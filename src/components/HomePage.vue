@@ -3,7 +3,7 @@
         <div class="w-75 mx-auto">
             <HeaderLayout :combinationName="currentCombination.name" />
             <ColorCombination :combination="currentCombination" />
-            <RelatedCombination :relatedCombinations="currentRelated" />
+            <RelatedCombination @change-combination="handleUpdateCombination" :relatedCombinations="currentRelated" />
         </div>
     </div>
 </template>
@@ -23,9 +23,21 @@ export default {
         RelatedCombination
     },
     setup() {
-        const currentCombination = ref(combinations[0].combination);
-        const currentRelated = ref(combinations[0].relatedCombinations);
-        return { currentCombination, currentRelated };
+        const defaultCombination = combinations[0].combination;
+        const defaultRelated = combinations[0].relatedCombinations;
+        let currentCombination = ref(defaultCombination);
+        let currentRelated = ref(defaultRelated);
+        let checkNewCombination = undefined;
+
+        const handleUpdateCombination = (id) => {
+            if (id) {
+                let newCombination = combinations.find((x) => x.combination.id === id);
+                checkNewCombination = newCombination;
+            }
+            currentCombination.value = checkNewCombination ? checkNewCombination.combination : defaultCombination;
+            currentRelated.value = checkNewCombination ? checkNewCombination.relatedCombinations : defaultRelated;
+        };
+        return { handleUpdateCombination, currentCombination, currentRelated };
     },
 }
 </script>

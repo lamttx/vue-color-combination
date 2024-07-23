@@ -2,9 +2,9 @@
   <div class="text-center">
     <h2 class="combination-related-title mb-5">Related Combinations</h2>
     <div class="combination-related row justify-content-between">
-      <div v-for="(comb, index) in relatedCombinations" :key="index"
-        class="d-flex justify-content-center align-items-center col-6 my-3">
-        <div v-for="color in comb.colors" :key="color">
+      <div v-for="(comb, index) in relatedCombinations" :key="index" role="button"
+        class="d-flex justify-content-center align-items-center col-6 my-3" @click="changeColorCombination(comb.id)">
+        <div v-for="(color, indexColor) in comb.colors" :key="indexColor">
           <div :style="{ backgroundColor: color }" class="combination-related-color-item-square"></div>
         </div>
       </div>
@@ -18,13 +18,23 @@
 </template>
 
 <script>
+import ColorCombination from './ColorCombination.vue';
+
 export default {
   name: 'RelatedCombination',
+  components: {
+    ColorCombination
+  },
   props: {
     relatedCombinations: {
       type: Array,
       required: true
     }
   },
+  methods: {
+    changeColorCombination(combinationId) {
+      this.$emit('change-combination', combinationId);
+    }
+  }
 }
 </script>
