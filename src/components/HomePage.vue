@@ -36,6 +36,8 @@ export default {
             }
             currentCombination.value = checkNewCombination ? checkNewCombination.combination : defaultCombination;
             currentRelated.value = checkNewCombination ? checkNewCombination.relatedCombinations : defaultRelated;
+
+            document.body.style.backgroundColor = (currentCombination.value).color.hex;
         };
         return { handleUpdateCombination, currentCombination, currentRelated };
     },
