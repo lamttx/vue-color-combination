@@ -38,6 +38,7 @@ export default {
             currentRelated.value = checkNewCombination ? checkNewCombination.relatedCombinations : defaultRelated;
 
             document.body.style.backgroundColor = (currentCombination.value).color.hex;
+            document.getElementById("btnBrowseTemplate").style.backgroundColor = (currentCombination.value).color.hex;
         };
         return { handleUpdateCombination, currentCombination, currentRelated };
     },

@@ -11,7 +11,8 @@
     </div>
     <div class="combination-browse-template-title">
       <h3>Use this color palette and create beautiful <br /> designs and documents!</h3>
-      <button role="button" class="border-0 rounded py-2 px-3 mt-3" :style="{ backgroundColor: '#F7CAC9' }">Browse
+      <button role="button" id="btnBrowseTemplate" class="border-0 rounded py-2 px-3 mt-3"
+        :style="{ backgroundColor: '#F7CAC9' }">Browse
         templates</button>
     </div>
   </div>
