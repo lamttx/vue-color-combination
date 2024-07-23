@@ -16,8 +16,8 @@
             <div class="row">
                 <div v-for="color in combination.colors" :key="color.hex" class="col-3 px-0">
                     <div :style="{ backgroundColor: color.hex }" class="combination-color-item-square">
-                        <div
-                            class="combination-color-item-square-hover d-flex justify-content-center align-items-center">
+                        <div class="combination-color-item-square-hover d-flex justify-content-center align-items-center"
+                            @click="copyColor(color.hex)">
                             <p class="mb-0">Copy</p>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-check-lg combination-color-item-square-checked-icon" viewBox="0 0 16 16">
@@ -49,5 +49,14 @@ export default {
             featuredImageUrl: '/images/Thumbnail/'
         }
     },
-}
+    setup() {
+        const copyColor = (hex) => {
+            navigator.clipboard.writeText(hex).then(
+                () => alert(`Copied ${hex}!`),
+                (err) => alert('Failed to copy: ' + err)
+            );
+        };
+        return { copyColor };
+    }
+};
 </script>
